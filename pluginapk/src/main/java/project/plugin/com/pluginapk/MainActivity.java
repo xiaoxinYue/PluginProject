@@ -29,7 +29,8 @@ public class MainActivity extends BasePluginActivity {
         that.findViewById(R.id.plugin_jump_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(that,HomeActivity.class);
+                Intent intent = new Intent(that, ProxyActivity.class);
+                intent.putExtra("className", PluginManager.getInstance().getPackageInfo().activities[1].name);
                 that.startActivity(intent);
             }
         });

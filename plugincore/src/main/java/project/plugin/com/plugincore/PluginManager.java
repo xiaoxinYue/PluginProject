@@ -66,7 +66,6 @@ public class PluginManager {
      */
     public void loadPath(String path) {
         File dexOutFile = context.getDir("dex", Context.MODE_PRIVATE);
-
         //实例化dexclassLoad 加载文件
         dexClassLoader = new DexClassLoader(path, dexOutFile.getAbsolutePath(), null, context.getClassLoader());
         //实例化resource

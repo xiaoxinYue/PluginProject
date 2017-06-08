@@ -1,11 +1,8 @@
 package project.plugin.com.mypluginproject;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import dalvik.system.DexClassLoader;
 import project.plugin.com.plugincore.PluginManager;
 import project.plugin.com.plugincore.ProxyActivity;
 
@@ -30,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void loadApk(View v) {
         //File file = new File(Environment.getExternalStorageDirectory(), "plugin0.apk");
-        String filePath = this.getCacheDir()+File.separator+"plugin.apk";
+        String filePath = this.getCacheDir() + File.separator + "plugin.apk";
         InputStream is = null;
         try {
             is = this.getAssets().open("plugin.apk");
@@ -47,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         }
         File file = new File(filePath);
         Toast.makeText(this, "下载成功", Toast.LENGTH_SHORT).show();
-       PluginManager.getInstance().loadPath(file.getAbsolutePath());
+        PluginManager.getInstance().loadPath(file.getAbsolutePath());
     }
 
     public void jumpPluginApk(View v) {

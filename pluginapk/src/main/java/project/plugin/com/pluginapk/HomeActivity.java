@@ -1,6 +1,5 @@
 package project.plugin.com.pluginapk;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import project.plugin.com.plugincore.BasePluginActivity;

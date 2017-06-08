@@ -17,8 +17,8 @@
         android:id="@+id/plugin_jump_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="跳转" />
+        android:layout_marginTop="30dp"
+        android:text="跳转到homectivity" />
 
 
     <TextView
