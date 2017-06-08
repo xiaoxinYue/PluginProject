@@ -5,6 +5,11 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -22,6 +27,12 @@ public class PluginManager {
     private Context context;
     private Resources resources;
     private PackageInfo packageInfo;
+    private Drawable drawable;
+    private View layout;
+    private int color;
+
+
+    private String string;
 
     private static PluginManager pluginManager;
 
@@ -76,7 +87,8 @@ public class PluginManager {
             Resources superResource = context.getResources();
             resources = new Resources(assetManager, superResource.getDisplayMetrics(), superResource.getConfiguration());
             PackageManager packageManager = context.getPackageManager();
-            packageInfo = packageManager.getPackageArchiveInfo(path,PackageManager.GET_ACTIVITIES);
+            packageInfo = packageManager.getPackageArchiveInfo(path, PackageManager.GET_ACTIVITIES);
+
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -87,6 +99,53 @@ public class PluginManager {
             e.printStackTrace();
         }
 
+    }
+
+
+    /**
+     * 获取资源对应的编号
+     *
+     * @param res
+     * @param resName
+     * @param resType layout、drawable、string
+     * @return
+     */
+    private int getId(Resources res, String resType, String resName) {
+        return res.getIdentifier(resName, resType, PluginManager.getInstance().getPackageInfo().packageName);
+    }
+
+    /**
+     * 获取视图
+     *
+     * @param context
+     * @param id
+     * @return
+     */
+    public View getView(Context context, int id) {
+        return ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(id, null);
+    }
+
+
+    public View getLayout(String layoutName) {
+        layout = getView(context, getId(resources, "layout", layoutName));
+        return layout;
+    }
+
+
+    public int getColor(String colorName) {
+        color = resources.getColor(getId(resources, "color", colorName));
+        return color;
+    }
+
+
+    public Drawable getDrawable(String drawableName) {
+        drawable = resources.getDrawable(getId(resources, "drawable", drawableName));
+        return drawable;
+    }
+
+    public String getString(String stringName) {
+        string = resources.getString(getId(resources, "String", stringName));
+        return string;
     }
 
 
